@@ -14,7 +14,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
@@ -22,7 +21,6 @@
                 <version>5.11.3</version>
                 <scope>test</scope>
             </dependency>
-        </dependencies>
-    </dependencyManagement>
+    </dependencies>
 
 </project>
