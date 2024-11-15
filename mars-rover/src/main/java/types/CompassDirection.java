@@ -1,3 +1,5 @@
+package types;
+
 public enum CompassDirection {
     N,
     E,

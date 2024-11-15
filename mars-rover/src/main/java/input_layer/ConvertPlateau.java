@@ -1,4 +1,13 @@
 package input_layer;
 
-public class ConvertPlateau {
+import types.PlateauSize;
+
+public class ConvertPlateau implements Conversion {
+    private PlateauSize size;
+
+
+    @Override
+    public void convertData(String userInput) {
+
+    }
 }
