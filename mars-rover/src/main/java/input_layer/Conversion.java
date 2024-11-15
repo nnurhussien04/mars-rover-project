@@ -1,6 +1,8 @@
 package input_layer;
 
+import types.*;
+
 public interface Conversion {
-    public void convertData(String userInput);
+    public <T> T convertData (String userInput);
 
 }

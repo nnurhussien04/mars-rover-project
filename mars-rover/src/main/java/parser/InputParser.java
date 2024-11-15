@@ -3,6 +3,7 @@ package parser;
 import input_layer.Conversion;
 
 import input_layer.ConvertInstruction;
+import input_layer.ConvertPlateau;
 import input_layer.ConvertPosition;
 import user_controls.UserInput;
 
@@ -15,6 +16,7 @@ public class InputParser {
     public InputParser(){
         userInput = new UserInput();
     }
+
     public void convertType(String data){
         if(userInput.getPlateuPosition() == null){
             System.out.println("Set Plateu Position");
@@ -42,4 +44,10 @@ public class InputParser {
         }
 
     }
+
+    public void ConvertPlateu(String plateu){
+        conversion = new ConvertPlateau();
+        conversion.convertData(plateu);
+    }
+
 }
