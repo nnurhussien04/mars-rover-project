@@ -5,49 +5,63 @@ import input_layer.Conversion;
 import input_layer.ConvertInstruction;
 import input_layer.ConvertPlateau;
 import input_layer.ConvertPosition;
+import types.CompassDirection;
 import user_controls.UserInput;
 
+import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.stream.Stream;
 
 public class InputParser {
-    public Conversion conversion;
-    public UserInput userInput;
+    private Conversion conversion;
+    private UserInput userInput;
 
     public InputParser(){
         userInput = new UserInput();
     }
 
-    public void convertType(String data){
-        if(userInput.getPlateuPosition() == null){
-            System.out.println("Set Plateu Position");
-            return;
+    public Conversion convertType(String data){
+        if(data == null || data.isEmpty()){
+            //System.out.println("Set Plateu Position");
+            throw new NullPointerException();
         }
 
-        int numCounter = 0;
-        for(int i =0;i<data.length();i++){
-            if(Character.isDigit(data.charAt(i))){
-                numCounter++;
-            }
-        }
 
-        if(numCounter == 2){
+        int numCounter = (int) data.chars().filter(Character::isDigit).count();
+        int positionCounter =  (int) Stream.of(CompassDirection.values()).filter(y -> (data.chars().mapToObj(x -> (char) x).filter(x -> String.valueOf(x).equals(String.valueOf(y))).count() > 0)).count();
+        System.out.println(numCounter + " " + positionCounter);
+
+        if(numCounter == 2 && positionCounter == 1){
             conversion = new ConvertPosition();
             conversion.convertData(data);
+            return conversion;
         }
         else if(numCounter == 0){
             conversion = new ConvertInstruction();
             conversion.convertData(data);
+            return conversion;
         }
         else{
-            System.out.println("Input Error");
-            return;
+            throw new InputMismatchException();
         }
 
     }
 
-    public void ConvertPlateu(String plateu){
-        conversion = new ConvertPlateau();
-        conversion.convertData(plateu);
+    public Conversion convertPlateu(String plateu){
+        if(plateu == null || plateu.isEmpty()){
+            //System.out.println("Set Plateu Position");
+            throw new NullPointerException();
+        }
+
+        int numCounter = (int) plateu.chars().filter(Character::isDigit).count();
+
+        if(numCounter == 2){
+            conversion = new ConvertPlateau();
+            conversion.convertData(plateu);
+            return conversion;
+        }  else{
+            throw new InputMismatchException();
+        }
     }
 
 }

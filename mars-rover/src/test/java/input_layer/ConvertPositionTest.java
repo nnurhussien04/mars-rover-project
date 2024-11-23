@@ -23,7 +23,7 @@ class ConvertPositionTest {
     @Test
     @DisplayName("Checking to see if method will return exception on invalid value ")
     public void convertDataTakeInvalidValue(){
-        var expectedResult = new InputMismatchException().getClass().getName();
+        var expectedResult = InputMismatchException.class.getName();
         var actualResult = assertThrows(InputMismatchException.class,() -> new ConvertPosition().convertData("1 2 Y")).getClass().getName();
         assertEquals(expectedResult,actualResult);
     }
@@ -31,7 +31,7 @@ class ConvertPositionTest {
     @Test
     @DisplayName("Checking to see if method will return exception on invalid value ")
     public void convertDataTakeCorrectType(){
-        var expectedResult = new InputMismatchException().getClass().getName();
+        var expectedResult = InputMismatchException.class.getName();
         var actualResult = assertThrows(InputMismatchException.class,() -> new ConvertPosition().convertData("-x,/;a")).getClass().getName();
         assertEquals(expectedResult,actualResult);
     }
