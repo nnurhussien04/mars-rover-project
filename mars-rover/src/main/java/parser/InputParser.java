@@ -26,7 +26,6 @@ public class InputParser {
             throw new NullPointerException();
         }
 
-
         int numCounter = (int) data.chars().filter(Character::isDigit).count();
         int positionCounter =  (int) Stream.of(CompassDirection.values()).filter(y -> (data.chars().mapToObj(x -> (char) x).filter(x -> String.valueOf(x).equals(String.valueOf(y))).count() > 0)).count();
         System.out.println(numCounter + " " + positionCounter);
