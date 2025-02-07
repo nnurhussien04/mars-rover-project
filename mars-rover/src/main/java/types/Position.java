@@ -11,6 +11,10 @@ public class Position {
         this.facing = facing;
     }
 
+    public Position() {
+
+    }
+
     public int getX() {
         return x;
     }

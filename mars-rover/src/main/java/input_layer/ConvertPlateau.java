@@ -4,9 +4,8 @@ import types.PlateauSize;
 
 import java.util.InputMismatchException;
 
-public class ConvertPlateau implements Conversion {
+public class ConvertPlateau implements Conversion <PlateauSize> {
     private PlateauSize size;
-
 
     @Override
     public PlateauSize convertData(String userInput) {
@@ -21,4 +20,13 @@ public class ConvertPlateau implements Conversion {
         return size;
     }
 
+    @Override
+    public PlateauSize getData() {
+        return size;
+    }
+
+    @Override
+    public void setData(PlateauSize userData) {
+        size = userData;
+    }
 }

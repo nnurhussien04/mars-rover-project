@@ -11,9 +11,12 @@ public class Rover {
     private Instruction instruction;
     private Position position;
     private Plateau plateau;
+    private PlateauSize plateauSize;
 
-    public Rover(Position position) {
+    public Rover(Position position,PlateauSize size) {
         this.position = position;
+        this.plateau = new Plateau();
+        this.plateauSize = size;
     }
 
     public Position rotate(Instruction instruction) throws Exception {
@@ -45,11 +48,41 @@ public class Rover {
     public Position move(Instruction instruction) throws Exception{
         if(instruction.equals(M)){
             switch (position.getFacing()){
-                case N -> position.setY(position.getY()+1);
-                case S -> position.setY(position.getY()-1);
-                case E -> position.setX(position.getX()+1);
-                case W -> position.setX(position.getX()-1);
-                default -> throw new Exception();
+                case N:
+                    if(position.getY()+1 <= plateauSize.getY()){
+                        position.setY(position.getY() + 1);
+                    }
+                    else{
+                        throw new Exception("Outside the range of plateu");
+                    }
+                    break;
+                case S:
+                    if(position.getY()-1 >= 0){
+                        position.setY(position.getY()-1);
+                    }
+                    else{
+                        throw new Exception("Outside the range of plateu");
+                    }
+                    break;
+
+                case E:
+                    if(position.getX()+1 <= plateauSize.getX()){
+                        position.setX(position.getX() + 1);
+                    }
+                    else{
+                        throw new Exception("Outside the range of plateu");
+                    }
+                    break;
+                case W:
+                    if(position.getX()-1 >= 0){
+                        position.setX(position.getX()-1);
+                    }
+                    else{
+                        throw new Exception("Outside the range of plateu");
+                    }
+                    break;
+                default :
+                    throw new Exception();
             }
         }
         else{

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 
-public class ConvertInstruction implements Conversion{
+public class ConvertInstruction implements Conversion <ArrayList<Instruction>>{
     private InputParser parser;
     private ArrayList<Instruction> instruction;
 
@@ -18,7 +18,7 @@ public class ConvertInstruction implements Conversion{
             throw new NullPointerException();
         }
         for(int i = 0;i<userInput.length();i++){
-            if(!Character.isLetterOrDigit(userInput.charAt(i))){
+            if(!Character.isLetter(userInput.charAt(i))){
                 throw new InputMismatchException();
             }
             switch (userInput.charAt(i)){
@@ -43,8 +43,14 @@ public class ConvertInstruction implements Conversion{
     }
 
 
+    @Override
+    public ArrayList<Instruction> getData() {
+        return instruction;
+    }
 
-
-
+    @Override
+    public void setData(ArrayList<Instruction> userData) {
+        instruction = userData;
+    }
 
 }

@@ -9,6 +9,10 @@ public class PlateauSize {
         this.y = y;
     }
 
+    public PlateauSize() {
+    }
+
+
     public int getX() {
         return x;
     }

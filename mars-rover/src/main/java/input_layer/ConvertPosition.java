@@ -1,9 +1,10 @@
 package input_layer;
 import types.*;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 
-public class ConvertPosition implements Conversion {
+public class ConvertPosition implements Conversion <Position> {
     public Position position;
 
     @Override
@@ -37,4 +38,13 @@ public class ConvertPosition implements Conversion {
         return position;
     }
 
+    @Override
+    public Position getData() {
+        return position;
+    }
+
+    @Override
+    public void setData(Position userData) {
+        position = userData;
+    }
 }

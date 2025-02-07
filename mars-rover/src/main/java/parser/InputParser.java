@@ -6,18 +6,21 @@ import input_layer.ConvertInstruction;
 import input_layer.ConvertPlateau;
 import input_layer.ConvertPosition;
 import types.CompassDirection;
-import user_controls.UserInput;
+import types.Instruction;
+import types.PlateauSize;
+import types.Position;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.stream.Stream;
 
 public class InputParser {
     private Conversion conversion;
-    private UserInput userInput;
+    private PlateauSize plateauSize;
+    private ArrayList <Instruction> instruction;
+    private Position position;
 
     public InputParser(){
-        userInput = new UserInput();
     }
 
     public Conversion convertType(String data){
@@ -28,16 +31,16 @@ public class InputParser {
 
         int numCounter = (int) data.chars().filter(Character::isDigit).count();
         int positionCounter =  (int) Stream.of(CompassDirection.values()).filter(y -> (data.chars().mapToObj(x -> (char) x).filter(x -> String.valueOf(x).equals(String.valueOf(y))).count() > 0)).count();
-        System.out.println(numCounter + " " + positionCounter);
+        //System.out.println(numCounter + " " + positionCounter);
 
         if(numCounter == 2 && positionCounter == 1){
             conversion = new ConvertPosition();
-            conversion.convertData(data);
+            position = (Position) conversion.convertData(data);
             return conversion;
         }
         else if(numCounter == 0){
             conversion = new ConvertInstruction();
-            conversion.convertData(data);
+            instruction = (ArrayList<Instruction>) conversion.convertData(data);
             return conversion;
         }
         else{
@@ -56,11 +59,34 @@ public class InputParser {
 
         if(numCounter == 2){
             conversion = new ConvertPlateau();
-            conversion.convertData(plateu);
+            plateauSize = (PlateauSize) conversion.convertData(plateu);
             return conversion;
         }  else{
             throw new InputMismatchException();
         }
     }
 
+    public String getPlateauCoordinates() {
+        return plateauSize.getX() + " " + plateauSize.getY();
+    }
+
+    public PlateauSize getPlateauSize(){
+        return plateauSize;
+    }
+
+    public ArrayList <Instruction> getInstruction() {
+        return instruction;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPlateauSize(PlateauSize plateauSize) {
+        this.plateauSize = plateauSize;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 }
